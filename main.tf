@@ -1,5 +1,5 @@
 locals {
-  probes = length(var.probe_names) > 0 ? slice(sort(distinct([for k, v in data.grafana_synthetic_monitoring_probes.main.probes : contains(var.probe_names, k) ? v : 0])), 1, length(var.probe_names) + 1) : values(data.grafana_synthetic_monitoring_probes.main.probes)
+  probes = length(var.probe_names) > 0 ? [for k, v in data.grafana_synthetic_monitoring_probes.main.probes : v if contains(var.probe_names, k)] : values(data.grafana_synthetic_monitoring_probes.main.probes)
 }
 
 data "grafana_synthetic_monitoring_probes" "main" {}
