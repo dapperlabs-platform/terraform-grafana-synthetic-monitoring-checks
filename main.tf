@@ -1,5 +1,14 @@
 locals {
-  probes = length(var.probe_names) > 0 ? [for k, v in data.grafana_synthetic_monitoring_probes.main.probes : v if contains(var.probe_names, k)] : values(data.grafana_synthetic_monitoring_probes.main.probes)
+  deprecated_probes = [
+    "Chicago",
+    "LosAngeles",
+    "Miami",
+    "Seattle",
+    "SanJose",
+    "Seol"
+  ]
+  available_probes = { for k, v in data.grafana_synthetic_monitoring_probes.main.probes : k => v if contains(local.deprecated_probes, k) == false }
+  probes           = length(var.probe_names) > 0 ? [for k, v in local.available_probes : v if contains(var.probe_names, k)] : values(local.available_probes)
 }
 
 data "grafana_synthetic_monitoring_probes" "main" {}
@@ -17,7 +26,8 @@ resource "grafana_synthetic_monitoring_check" "http" {
 
   settings {
     http {
-      valid_status_codes = var.http_valid_status_codes
+      valid_status_codes  = var.http_valid_status_codes
+      no_follow_redirects = var.http_no_follow_redirects
     }
   }
 }
