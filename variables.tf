@@ -65,3 +65,9 @@ variable "http_valid_status_codes" {
   type        = list(number)
   default     = [200]
 }
+
+variable "http_no_follow_redirects" {
+  description = "Do not follow redirects"
+  type        = bool
+  default     = false
+}
