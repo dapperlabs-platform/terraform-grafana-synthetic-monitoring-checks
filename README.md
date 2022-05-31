@@ -50,3 +50,5 @@ Terraform >= 1.0.0
 | timeout                 | How long to wait before failing                                                        |    number    |          |  3000   |
 | dns_record_type         | One of ANY, A, AAAA, CNAME, MX, NS, PTR, SOA, SRV, TXT                                 |    string    |          |    A    |
 | http_valid_status_codes | Valid response HTTP status codes                                                       | list(number) |          |  [200]  |
+| disable_probes          | List of Probes to disable from synthetic monitoring checks                             |     string   |          |         | 
+
