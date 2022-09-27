@@ -17,7 +17,7 @@ resource "grafana_synthetic_monitoring_check" "http" {
   for_each = toset(var.http_targets)
 
   # replace . and / with - and remove query params
-  job               = "${split("?", replace("auth.staging.meetdapper.com/authorize?client", "/[\\.\\/]/", "-"))[0]}-http"
+  job               = "${split("?", replace(each.value, "/[\\.\\/]/", "-"))[0]}-http"
   target            = "https://${each.value}"
   enabled           = var.enabled
   probes            = local.probes
