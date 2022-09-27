@@ -75,4 +75,5 @@ variable "http_no_follow_redirects" {
 variable "disable_probes" {
   description = "List of Probes to disable from synthetic monitoring checks"
   type        = list(string)
+  default     = []
 }
