@@ -77,3 +77,15 @@ variable "disable_probes" {
   type        = list(string)
   default     = []
 }
+
+variable "http_method" {
+  description = "HTTP method GET|POST"
+  type        = string
+  default     = "GET"
+}
+
+variable "http_post_request_body" {
+  description = "HTTP request body"
+  type        = map(string)
+  default     = ""
+}

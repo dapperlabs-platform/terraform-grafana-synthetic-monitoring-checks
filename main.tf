@@ -29,6 +29,8 @@ resource "grafana_synthetic_monitoring_check" "http" {
     http {
       valid_status_codes  = var.http_valid_status_codes
       no_follow_redirects = var.http_no_follow_redirects
+      method              = var.http_method
+      request_body        = jsonencode(var.http_post_request_body)
     }
   }
 }
