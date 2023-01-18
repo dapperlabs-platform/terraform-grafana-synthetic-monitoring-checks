@@ -77,3 +77,15 @@ variable "disable_probes" {
   type        = list(string)
   default     = []
 }
+
+variable "http_method" {
+  description = "HTTP method GET|POST"
+  type        = string
+  default     = "GET"
+}
+
+variable "job_name" {
+  description = "Name used for job label"
+  type        = string
+  default     = null
+}
