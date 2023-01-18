@@ -88,3 +88,8 @@ variable "http_post_request_body" {
   description = "HTTP request body"
   type        = map(string)
 }
+
+variable "job_name" {
+  description = "Name used for job label"
+  type        = string
+}

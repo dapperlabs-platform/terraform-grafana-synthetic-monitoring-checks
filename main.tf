@@ -17,7 +17,7 @@ resource "grafana_synthetic_monitoring_check" "http" {
   for_each = toset(var.http_targets)
 
   # replace . and / with - and remove query params
-  job               = "${split("?", replace(each.value, "/[\\.\\/]/", "-"))[0]}-http"
+  job               = try(var.job_name, "${split("?", replace(each.value, "/[\\.\\/]/", "-"))[0]}-http")
   target            = "https://${each.value}"
   enabled           = var.enabled
   probes            = local.probes
