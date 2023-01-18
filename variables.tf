@@ -92,4 +92,5 @@ variable "http_post_request_body" {
 variable "job_name" {
   description = "Name used for job label"
   type        = string
+  default     = null
 }
